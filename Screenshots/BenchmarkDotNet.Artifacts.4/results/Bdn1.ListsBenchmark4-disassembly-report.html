@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>DisassemblyDiagnoser Output Bdn1.ListsBenchmark4-20190807-011747</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<table>
+<thead>
+<tr><th colspan="3">ListsBenchmark4.Sum_ByIndex</th></tr>
+<tr>
+<th>.NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3416.0</th>
+<th>.NET Core 2.2.3 (CoreCLR 4.6.27414.05, CoreFX 4.6.27414.05), 64bit RyuJIT</th>
+<th>.NET Core 3.0.0-preview7-27912-14 (CoreCLR 4.700.19.32702, CoreFX 4.700.19.36209), 64bit RyuJIT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top;"><pre><code>
+00007fff`739a9620 Bdn1.ListsBenchmark4.Sum_ByIndex()
+            int sum = 0;
+            ^^^^^^^^^^^^
+IL_0000: ldc.i4.0
+IL_0001: stloc.0
+00007fff`739a9620 33c0            xor     eax,eax
+            for (int i = 0; i < _data.Length; ++i)
+                 ^^^^^^^^^
+IL_0002: ldc.i4.0
+IL_0003: stloc.1
+IL_0004: br.s IL_0015
+00007fff`739a9622 33d2            xor     edx,edx
+            for (int i = 0; i < _data.Length; ++i)
+                            ^^^^^^^^^^^^^^^^
+IL_0015: ldloc.1
+IL_0016: ldarg.0
+IL_0017: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data
+IL_001c: ldlen
+IL_001d: conv.i4
+IL_001e: blt.s IL_0006
+00007fff`739a9624 488b4908        mov     rcx,qword ptr [rcx+8]
+00007fff`739a9628 448b4108        mov     r8d,dword ptr [rcx+8]
+00007fff`739a962c 4585c0          test    r8d,r8d
+00007fff`739a962f 7e16            jle     00007fff`739a9647
+                sum += _data[i];
+                ^^^^^^^^^^^^^^^^
+IL_0006: ldloc.0
+IL_0007: ldarg.0
+IL_0008: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data
+IL_000d: ldloc.1
+IL_000e: ldelem.u1
+IL_000f: add
+IL_0010: stloc.0
+00007fff`739a9631 4c8bc9          mov     r9,rcx
+00007fff`739a9634 4c63d2          movsxd  r10,edx
+00007fff`739a9637 470fb64c1110    movzx   r9d,byte ptr [r9+r10+10h]
+00007fff`739a963d 4103c1          add     eax,r9d
+            for (int i = 0; i < _data.Length; ++i)
+                                              ^^^
+IL_0011: ldloc.1
+IL_0012: ldc.i4.1
+IL_0013: add
+IL_0014: stloc.1
+00007fff`739a9640 ffc2            inc     edx
+00007fff`739a9642 443bc2          cmp     r8d,edx
+00007fff`739a9645 7fea            jg      00007fff`739a9631
+            return sum;
+            ^^^^^^^^^^^
+IL_0020: ldloc.0
+IL_0021: ret
+00007fff`739a9647 c3              ret
+
+</code></pre></td>
+<td style="vertical-align:top;"><pre><code>
+00007ffe`fb12e560 Bdn1.ListsBenchmark4.Sum_ByIndex()
+            int sum = 0;
+            ^^^^^^^^^^^^
+IL_0000: ldc.i4.0
+IL_0001: stloc.0
+00007ffe`fb12c676 33c0            xor     eax,eax
+00007ffe`fb12c678 8945fc          mov     dword ptr [rbp-4],eax
+            for (int i = 0; i < _data.Length; ++i)
+                 ^^^^^^^^^
+IL_0002: ldc.i4.0
+IL_0003: stloc.1
+IL_0004: br.s IL_0015
+00007ffe`fb12c67b 8945f8          mov     dword ptr [rbp-8],eax
+00007ffe`fb12c67e eb27            jmp     00007ffe`fb12c6a7
+                sum += _data[i];
+                ^^^^^^^^^^^^^^^^
+IL_0006: ldloc.0
+IL_0007: ldarg.0
+IL_0008: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data
+IL_000d: ldloc.1
+IL_000e: ldelem.u1
+IL_000f: add
+IL_0010: stloc.0
+00007ffe`fb12c680 488b4510        mov     rax,qword ptr [rbp+10h]
+00007ffe`fb12c684 488b4008        mov     rax,qword ptr [rax+8]
+00007ffe`fb12c688 8b55f8          mov     edx,dword ptr [rbp-8]
+00007ffe`fb12c68b 483b5008        cmp     rdx,qword ptr [rax+8]
+00007ffe`fb12c68f 732f            jae     00007ffe`fb12c6c0
+00007ffe`fb12c691 488d441010      lea     rax,[rax+rdx+10h]
+00007ffe`fb12c696 0fb600          movzx   eax,byte ptr [rax]
+00007ffe`fb12c699 0345fc          add     eax,dword ptr [rbp-4]
+00007ffe`fb12c69c 8945fc          mov     dword ptr [rbp-4],eax
+            for (int i = 0; i < _data.Length; ++i)
+                                              ^^^
+IL_0011: ldloc.1
+IL_0012: ldc.i4.1
+IL_0013: add
+IL_0014: stloc.1
+00007ffe`fb12c69f 8b45f8          mov     eax,dword ptr [rbp-8]
+00007ffe`fb12c6a2 ffc0            inc     eax
+00007ffe`fb12c6a4 8945f8          mov     dword ptr [rbp-8],eax
+            for (int i = 0; i < _data.Length; ++i)
+                            ^^^^^^^^^^^^^^^^
+IL_0015: ldloc.1
+IL_0016: ldarg.0
+IL_0017: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data
+IL_001c: ldlen
+IL_001d: conv.i4
+IL_001e: blt.s IL_0006
+00007ffe`fb12c6a7 8b45f8          mov     eax,dword ptr [rbp-8]
+00007ffe`fb12c6aa 488b5510        mov     rdx,qword ptr [rbp+10h]
+00007ffe`fb12c6ae 488b5208        mov     rdx,qword ptr [rdx+8]
+00007ffe`fb12c6b2 3b4208          cmp     eax,dword ptr [rdx+8]
+00007ffe`fb12c6b5 7cc9            jl      00007ffe`fb12c680
+            return sum;
+            ^^^^^^^^^^^
+IL_0020: ldloc.0
+IL_0021: ret
+00007ffe`fb12c6b7 8b45fc          mov     eax,dword ptr [rbp-4]
+
+</code></pre></td>
+<td style="vertical-align:top;"><pre><code>
+00007fff`04a18b80 Bdn1.ListsBenchmark4.Sum_ByIndex()
+            int sum = 0;
+            ^^^^^^^^^^^^
+IL_0000: ldc.i4.0
+IL_0001: stloc.0
+00007fff`04a18b84 33c0            xor     eax,eax
+            for (int i = 0; i < _data.Length; ++i)
+                 ^^^^^^^^^
+IL_0002: ldc.i4.0
+IL_0003: stloc.1
+IL_0004: br.s IL_0015
+00007fff`04a18b86 33d2            xor     edx,edx
+            for (int i = 0; i < _data.Length; ++i)
+                            ^^^^^^^^^^^^^^^^
+IL_0015: ldloc.1
+IL_0016: ldarg.0
+IL_0017: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data
+IL_001c: ldlen
+IL_001d: conv.i4
+IL_001e: blt.s IL_0006
+00007fff`04a18b88 488b4908        mov     rcx,qword ptr [rcx+8]
+00007fff`04a18b8c 83790800        cmp     dword ptr [rcx+8],0
+00007fff`04a18b90 7e1c            jle     00007fff`04a18bae
+                sum += _data[i];
+                ^^^^^^^^^^^^^^^^
+IL_0006: ldloc.0
+IL_0007: ldarg.0
+IL_0008: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data
+IL_000d: ldloc.1
+IL_000e: ldelem.u1
+IL_000f: add
+IL_0010: stloc.0
+00007fff`04a18b92 4c8bc1          mov     r8,rcx
+00007fff`04a18b95 413b5008        cmp     edx,dword ptr [r8+8]
+00007fff`04a18b99 7318            jae     00007fff`04a18bb3
+00007fff`04a18b9b 4c63ca          movsxd  r9,edx
+00007fff`04a18b9e 470fb6440810    movzx   r8d,byte ptr [r8+r9+10h]
+00007fff`04a18ba4 4103c0          add     eax,r8d
+            for (int i = 0; i < _data.Length; ++i)
+                                              ^^^
+IL_0011: ldloc.1
+IL_0012: ldc.i4.1
+IL_0013: add
+IL_0014: stloc.1
+00007fff`04a18ba7 ffc2            inc     edx
+00007fff`04a18ba9 395108          cmp     dword ptr [rcx+8],edx
+00007fff`04a18bac 7fe4            jg      00007fff`04a18b92
+            return sum;
+            ^^^^^^^^^^^
+IL_0020: ldloc.0
+IL_0021: ret
+00007fff`04a18bae 4883c428        add     rsp,28h
+
+</code></pre></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr><th colspan="3">ListsBenchmark4.Sum_Foreach</th></tr>
+<tr>
+<th>.NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3416.0</th>
+<th>.NET Core 2.2.3 (CoreCLR 4.6.27414.05, CoreFX 4.6.27414.05), 64bit RyuJIT</th>
+<th>.NET Core 3.0.0-preview7-27912-14 (CoreCLR 4.700.19.32702, CoreFX 4.700.19.36209), 64bit RyuJIT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top;"><pre><code>
+00007fff`73989620 Bdn1.ListsBenchmark4.Sum_Foreach()
+            int sum = 0;
+            ^^^^^^^^^^^^
+IL_0000: ldc.i4.0
+IL_0001: stloc.0
+00007fff`73989620 33c0            xor     eax,eax
+            foreach (var n in _data)
+                              ^^^^^
+IL_0002: ldarg.0
+IL_0003: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data
+IL_0008: stloc.1
+00007fff`73989622 488b5108        mov     rdx,qword ptr [rcx+8]
+IL_0009: ldc.i4.0
+IL_000a: stloc.2
+IL_000b: br.s IL_0019
+00007fff`73989626 33c9            xor     ecx,ecx
+            foreach (var n in _data)
+                           ^^
+IL_0019: ldloc.2
+IL_001a: ldloc.1
+IL_001b: ldlen
+IL_001c: conv.i4
+IL_001d: blt.s IL_000d
+00007fff`73989628 448b4208        mov     r8d,dword ptr [rdx+8]
+00007fff`7398962c 4585c0          test    r8d,r8d
+00007fff`7398962f 7e13            jle     00007fff`73989644
+            foreach (var n in _data)
+                     ^^^^^
+IL_000d: ldloc.1
+IL_000e: ldloc.2
+IL_000f: ldelem.u1
+IL_0010: stloc.3
+00007fff`73989631 4c63c9          movsxd  r9,ecx
+00007fff`73989634 460fb64c0a10    movzx   r9d,byte ptr [rdx+r9+10h]
+                sum += n;
+                ^^^^^^^^^
+IL_0011: ldloc.0
+IL_0012: ldloc.3
+IL_0013: add
+IL_0014: stloc.0
+00007fff`7398963a 4103c1          add     eax,r9d
+IL_0015: ldloc.2
+IL_0016: ldc.i4.1
+IL_0017: add
+IL_0018: stloc.2
+00007fff`7398963d ffc1            inc     ecx
+00007fff`7398963f 443bc1          cmp     r8d,ecx
+00007fff`73989642 7fed            jg      00007fff`73989631
+            return sum;
+            ^^^^^^^^^^^
+IL_001f: ldloc.0
+IL_0020: ret
+00007fff`73989644 c3              ret
+
+</code></pre></td>
+<td style="vertical-align:top;"><pre><code>
+00007ffe`fb13e580 Bdn1.ListsBenchmark4.Sum_Foreach()
+            int sum = 0;
+            ^^^^^^^^^^^^
+IL_0000: ldc.i4.0
+IL_0001: stloc.0
+00007ffe`fb13c683 33c0            xor     eax,eax
+00007ffe`fb13c685 8945ec          mov     dword ptr [rbp-14h],eax
+            foreach (var n in _data)
+                              ^^^^^
+IL_0002: ldarg.0
+IL_0003: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data
+IL_0008: stloc.1
+00007ffe`fb13c688 488b4510        mov     rax,qword ptr [rbp+10h]
+00007ffe`fb13c68c 488b4008        mov     rax,qword ptr [rax+8]
+00007ffe`fb13c690 488945e0        mov     qword ptr [rbp-20h],rax
+IL_0009: ldc.i4.0
+IL_000a: stloc.2
+IL_000b: br.s IL_0019
+00007ffe`fb13c694 33c0            xor     eax,eax
+00007ffe`fb13c696 8945dc          mov     dword ptr [rbp-24h],eax
+00007ffe`fb13c699 eb29            jmp     00007ffe`fb13c6c4
+            foreach (var n in _data)
+                     ^^^^^
+IL_000d: ldloc.1
+IL_000e: ldloc.2
+IL_000f: ldelem.u1
+IL_0010: stloc.3
+00007ffe`fb13c69b 488b45e0        mov     rax,qword ptr [rbp-20h]
+00007ffe`fb13c69f 8b55dc          mov     edx,dword ptr [rbp-24h]
+00007ffe`fb13c6a2 483b5008        cmp     rdx,qword ptr [rax+8]
+00007ffe`fb13c6a6 7333            jae     00007ffe`fb13c6db
+00007ffe`fb13c6a8 488d441010      lea     rax,[rax+rdx+10h]
+00007ffe`fb13c6ad 0fb600          movzx   eax,byte ptr [rax]
+00007ffe`fb13c6b0 8945d8          mov     dword ptr [rbp-28h],eax
+                sum += n;
+                ^^^^^^^^^
+IL_0011: ldloc.0
+IL_0012: ldloc.3
+IL_0013: add
+IL_0014: stloc.0
+00007ffe`fb13c6b3 8b45ec          mov     eax,dword ptr [rbp-14h]
+00007ffe`fb13c6b6 0345d8          add     eax,dword ptr [rbp-28h]
+00007ffe`fb13c6b9 8945ec          mov     dword ptr [rbp-14h],eax
+IL_0015: ldloc.2
+IL_0016: ldc.i4.1
+IL_0017: add
+IL_0018: stloc.2
+00007ffe`fb13c6bc 8b45dc          mov     eax,dword ptr [rbp-24h]
+00007ffe`fb13c6bf ffc0            inc     eax
+00007ffe`fb13c6c1 8945dc          mov     dword ptr [rbp-24h],eax
+            foreach (var n in _data)
+                           ^^
+IL_0019: ldloc.2
+IL_001a: ldloc.1
+IL_001b: ldlen
+IL_001c: conv.i4
+IL_001d: blt.s IL_000d
+00007ffe`fb13c6c4 8b45dc          mov     eax,dword ptr [rbp-24h]
+00007ffe`fb13c6c7 488b55e0        mov     rdx,qword ptr [rbp-20h]
+00007ffe`fb13c6cb 3b4208          cmp     eax,dword ptr [rdx+8]
+00007ffe`fb13c6ce 7ccb            jl      00007ffe`fb13c69b
+            return sum;
+            ^^^^^^^^^^^
+IL_001f: ldloc.0
+IL_0020: ret
+00007ffe`fb13c6d0 8b45ec          mov     eax,dword ptr [rbp-14h]
+
+</code></pre></td>
+<td style="vertical-align:top;"><pre><code>
+00007fff`04a088a0 Bdn1.ListsBenchmark4.Sum_Foreach()
+            int sum = 0;
+            ^^^^^^^^^^^^
+IL_0000: ldc.i4.0
+IL_0001: stloc.0
+00007fff`04a088a0 33c0            xor     eax,eax
+            foreach (var n in _data)
+                              ^^^^^
+IL_0002: ldarg.0
+IL_0003: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data
+IL_0008: stloc.1
+00007fff`04a088a2 488b5108        mov     rdx,qword ptr [rcx+8]
+IL_0009: ldc.i4.0
+IL_000a: stloc.2
+IL_000b: br.s IL_0019
+00007fff`04a088a6 33c9            xor     ecx,ecx
+            foreach (var n in _data)
+                           ^^
+IL_0019: ldloc.2
+IL_001a: ldloc.1
+IL_001b: ldlen
+IL_001c: conv.i4
+IL_001d: blt.s IL_000d
+00007fff`04a088a8 448b4208        mov     r8d,dword ptr [rdx+8]
+00007fff`04a088ac 4585c0          test    r8d,r8d
+00007fff`04a088af 7e13            jle     00007fff`04a088c4
+            foreach (var n in _data)
+                     ^^^^^
+IL_000d: ldloc.1
+IL_000e: ldloc.2
+IL_000f: ldelem.u1
+IL_0010: stloc.3
+00007fff`04a088b1 4c63c9          movsxd  r9,ecx
+00007fff`04a088b4 460fb64c0a10    movzx   r9d,byte ptr [rdx+r9+10h]
+                sum += n;
+                ^^^^^^^^^
+IL_0011: ldloc.0
+IL_0012: ldloc.3
+IL_0013: add
+IL_0014: stloc.0
+00007fff`04a088ba 4103c1          add     eax,r9d
+IL_0015: ldloc.2
+IL_0016: ldc.i4.1
+IL_0017: add
+IL_0018: stloc.2
+00007fff`04a088bd ffc1            inc     ecx
+00007fff`04a088bf 443bc1          cmp     r8d,ecx
+00007fff`04a088c2 7fed            jg      00007fff`04a088b1
+            return sum;
+            ^^^^^^^^^^^
+IL_001f: ldloc.0
+IL_0020: ret
+00007fff`04a088c4 c3              ret
+
+</code></pre></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

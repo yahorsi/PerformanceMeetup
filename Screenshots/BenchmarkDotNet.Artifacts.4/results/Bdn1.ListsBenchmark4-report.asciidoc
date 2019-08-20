@@ -1,0 +1,21 @@
+....
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.17763.615 (1809/October2018Update/Redstone5)
+Intel Core i7-8700 CPU 3.20GHz (Coffee Lake), 1 CPU, 12 logical and 6 physical cores
+.NET Core SDK=3.0.100-preview7-012821
+  [Host]                           : .NET Core 2.1.12 (CoreCLR 4.6.27817.01, CoreFX 4.6.27818.01), 64bit RyuJIT
+  CsProjClassicNetToolchain.Net472 : .NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3416.0
+  CsProjCoreToolchain.NetCoreApp22 : .NET Core 2.2.3 (CoreCLR 4.6.27414.05, CoreFX 4.6.27414.05), 64bit RyuJIT
+  CsProjCoreToolchain.NetCoreApp30 : .NET Core 3.0.0-preview7-27912-14 (CoreCLR 4.700.19.32702, CoreFX 4.700.19.36209), 64bit RyuJIT
+
+Runtime=Core  Server=True  
+....
+[options="header"]
+|===
+|       Method|                               Job|         EnvironmentVariables|      Toolchain|     N|      Mean|     Error|    StdDev|  Ratio|  RatioSD|  Gen 0|  Gen 1|  Gen 2|  Allocated
+|  Sum_ByIndex|  CsProjClassicNetToolchain.Net472|                        Empty|         net472|  1000|  477.9 ns|  2.182 ns|  2.041 ns|   1.00|     0.01|      -|      -|      -|          -
+|  Sum_Foreach|  CsProjClassicNetToolchain.Net472|                        Empty|         net472|  1000|  480.4 ns|  7.727 ns|  6.850 ns|   1.00|     0.00|      -|      -|      -|          -
+|  Sum_ByIndex|  CsProjCoreToolchain.NetCoreApp22|  COMPLUS_TieredCompilation=1|  .NET Core 2.2|  1000|  475.7 ns|  1.177 ns|  1.101 ns|   1.34|     0.02|      -|      -|      -|          -
+|  Sum_Foreach|  CsProjCoreToolchain.NetCoreApp22|  COMPLUS_TieredCompilation=1|  .NET Core 2.2|  1000|  354.0 ns|  5.031 ns|  4.706 ns|   1.00|     0.00|      -|      -|      -|          -
+|  Sum_ByIndex|  CsProjCoreToolchain.NetCoreApp30|  COMPLUS_TieredCompilation=1|  .NET Core 3.0|  1000|  478.2 ns|  3.691 ns|  3.272 ns|   1.00|     0.01|      -|      -|      -|          -
+|  Sum_Foreach|  CsProjCoreToolchain.NetCoreApp30|  COMPLUS_TieredCompilation=1|  .NET Core 3.0|  1000|  476.6 ns|  2.921 ns|  2.589 ns|   1.00|     0.00|      -|      -|      -|          -
+|===

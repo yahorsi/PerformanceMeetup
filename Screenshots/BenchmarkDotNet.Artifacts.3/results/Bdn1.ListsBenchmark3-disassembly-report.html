@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>DisassemblyDiagnoser Output Bdn1.ListsBenchmark3</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<table>
+<thead>
+<tr><th colspan="2">Bdn1.ListsBenchmark3</th></tr>
+<tr>
+<th>Sum_ByIndex .NET Core 2.2.3 (CoreCLR 4.6.27414.05, CoreFX 4.6.27414.05), 64bit RyuJIT</th>
+<th>Sum_Foreach .NET Core 2.2.3 (CoreCLR 4.6.27414.05, CoreFX 4.6.27414.05), 64bit RyuJIT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="vertical-align:top;"><pre><code>
+00007fff`04bd2a30 Bdn1.ListsBenchmark3.Sum_ByIndex()
+            int sum = 0;
+            ^^^^^^^^^^^^
+IL_0000: ldc.i4.0
+IL_0001: stloc.0
+00007fff`04bd2a34 33c0            xor     eax,eax
+            for (int i = 0; i < _data.Length; ++i)
+                 ^^^^^^^^^
+IL_0002: ldc.i4.0
+IL_0003: stloc.1
+IL_0004: br.s IL_0015
+00007fff`04bd2a36 33d2            xor     edx,edx
+            for (int i = 0; i < _data.Length; ++i)
+                            ^^^^^^^^^^^^^^^^
+IL_0015: ldloc.1
+IL_0016: ldarg.0
+IL_0017: ldfld System.Byte[] Bdn1.ListsBenchmark3::_data
+IL_001c: ldlen
+IL_001d: conv.i4
+IL_001e: blt.s IL_0006
+00007fff`04bd2a38 488b4908        mov     rcx,qword ptr [rcx+8]
+00007fff`04bd2a3c 83790800        cmp     dword ptr [rcx+8],0
+00007fff`04bd2a40 7e1c            jle     00007fff`04bd2a5e
+                sum += _data[i];
+                ^^^^^^^^^^^^^^^^
+IL_0006: ldloc.0
+IL_0007: ldarg.0
+IL_0008: ldfld System.Byte[] Bdn1.ListsBenchmark3::_data
+IL_000d: ldloc.1
+IL_000e: ldelem.u1
+IL_000f: add
+IL_0010: stloc.0
+00007fff`04bd2a42 4c8bc1          mov     r8,rcx
+00007fff`04bd2a45 413b5008        cmp     edx,dword ptr [r8+8]
+00007fff`04bd2a49 7318            jae     00007fff`04bd2a63
+00007fff`04bd2a4b 4c63ca          movsxd  r9,edx
+00007fff`04bd2a4e 470fb6440810    movzx   r8d,byte ptr [r8+r9+10h]
+00007fff`04bd2a54 4103c0          add     eax,r8d
+            for (int i = 0; i < _data.Length; ++i)
+                                              ^^^
+IL_0011: ldloc.1
+IL_0012: ldc.i4.1
+IL_0013: add
+IL_0014: stloc.1
+00007fff`04bd2a57 ffc2            inc     edx
+00007fff`04bd2a59 395108          cmp     dword ptr [rcx+8],edx
+00007fff`04bd2a5c 7fe4            jg      00007fff`04bd2a42
+            return sum;
+            ^^^^^^^^^^^
+IL_0020: ldloc.0
+IL_0021: ret
+00007fff`04bd2a5e 4883c428        add     rsp,28h
+
+</code></pre></td>
+<td style="vertical-align:top;"><pre><code>
+00007fff`04c02a30 Bdn1.ListsBenchmark3.Sum_Foreach()
+            int sum = 0;
+            ^^^^^^^^^^^^
+IL_0000: ldc.i4.0
+IL_0001: stloc.0
+00007fff`04c02a30 33c0            xor     eax,eax
+            foreach (var n in _data)
+                              ^^^^^
+IL_0002: ldarg.0
+IL_0003: ldfld System.Byte[] Bdn1.ListsBenchmark3::_data
+IL_0008: stloc.1
+00007fff`04c02a32 488b5108        mov     rdx,qword ptr [rcx+8]
+IL_0009: ldc.i4.0
+IL_000a: stloc.2
+IL_000b: br.s IL_0019
+00007fff`04c02a36 33c9            xor     ecx,ecx
+            foreach (var n in _data)
+                           ^^
+IL_0019: ldloc.2
+IL_001a: ldloc.1
+IL_001b: ldlen
+IL_001c: conv.i4
+IL_001d: blt.s IL_000d
+00007fff`04c02a38 448b4208        mov     r8d,dword ptr [rdx+8]
+00007fff`04c02a3c 4585c0          test    r8d,r8d
+00007fff`04c02a3f 7e13            jle     00007fff`04c02a54
+            foreach (var n in _data)
+                     ^^^^^
+IL_000d: ldloc.1
+IL_000e: ldloc.2
+IL_000f: ldelem.u1
+IL_0010: stloc.3
+00007fff`04c02a41 4c63c9          movsxd  r9,ecx
+00007fff`04c02a44 460fb64c0a10    movzx   r9d,byte ptr [rdx+r9+10h]
+                sum += n;
+                ^^^^^^^^^
+IL_0011: ldloc.0
+IL_0012: ldloc.3
+IL_0013: add
+IL_0014: stloc.0
+00007fff`04c02a4a 4103c1          add     eax,r9d
+IL_0015: ldloc.2
+IL_0016: ldc.i4.1
+IL_0017: add
+IL_0018: stloc.2
+00007fff`04c02a4d ffc1            inc     ecx
+00007fff`04c02a4f 443bc1          cmp     r8d,ecx
+00007fff`04c02a52 7fed            jg      00007fff`04c02a41
+            return sum;
+            ^^^^^^^^^^^
+IL_001f: ldloc.0
+IL_0020: ret
+00007fff`04c02a54 c3              ret
+
+</code></pre></td>
+</tr>
+</tbody>
+</table>
+</body>
+</html>

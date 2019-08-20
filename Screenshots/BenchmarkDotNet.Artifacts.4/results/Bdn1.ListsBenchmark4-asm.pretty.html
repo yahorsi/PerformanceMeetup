@@ -1,0 +1,737 @@
+<!DOCTYPE html><html lang='en'><head><meta charset='utf-8' /><head>
+<title>Pretty Output of DisassemblyDiagnoser for Bdn1.ListsBenchmark4-20190807-011747</title>
+
+<style type="text/css">
+    pre { margin: 0px; }
+    table { border-collapse:collapse; }
+    td.perMethod { border-top: 1px black solid; }
+    tr.evenMap td { background-color: #F5F5F5; }  
+</style>
+
+<style type='text/css'>
+    td.label:hover { cursor: pointer; background-color: yellow !important; }
+    td.highlighted { background-color: yellow !important; }
+</style></head><body>
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js"></script>
+<script>$(document).ready(function () {
+    var selectedIndex = 0;
+
+    function highlight() {
+        $('td.reference.highlighted').removeClass('highlighted');
+
+        var selectedLabel = $(this).attr('data-label');
+        if (selectedLabel) {
+            $('td.reference[data-reference=' + selectedLabel + ']').addClass('highlighted');
+        }
+        selectedIndex = 0;
+    }
+
+    function selectNext() {
+        var $highlighted = $('td.reference.highlighted');
+        var selected = $highlighted[selectedIndex++ % $highlighted.length];
+
+        if (selected) {
+            var selectedReference = $(selected).attr('id');
+            if (selectedReference) {
+                window.location.hash = '#' + selectedReference;
+            }
+        }
+    }
+
+    $('td.label').on('click', highlight);
+
+    $(document).on('keydown', function (event) {
+        if (event.keyCode == 114) { // F3
+            event.preventDefault();
+            // Remap F3 to some other key that the browser doesn't care about
+            selectNext();
+        }
+    });
+});</script>
+<h2>.NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3416.0</h2>
+<table><tbody>
+<tr><th colspan="2" style="text-align: left;">Bdn1.ListsBenchmark4.Sum_ByIndex()</th><th></th></tr>
+<tr class="">
+<td></td><td ><pre><code>            int sum = 0;
+            ^^^^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0000: ldc.i4.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0001: stloc.0</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`739a9620 33c0            xor     eax,eax"><pre><code>xor     eax,eax</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            for (int i = 0; i < _data.Length; ++i)
+                 ^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0002: ldc.i4.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0003: stloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0004: br.s IL_0015</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`739a9622 33d2            xor     edx,edx"><pre><code>xor     edx,edx</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            for (int i = 0; i < _data.Length; ++i)
+                            ^^^^^^^^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0015: ldloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0016: ldarg.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0017: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001c: ldlen</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001d: conv.i4</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001e: blt.s IL_0006</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`739a9624 488b4908        mov     rcx,qword ptr [rcx+8]"><pre><code>mov     rcx,qword ptr [rcx+8]</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`739a9628 448b4108        mov     r8d,dword ptr [rcx+8]"><pre><code>mov     r8d,dword ptr [rcx+8]</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`739a962c 4585c0          test    r8d,r8d"><pre><code>test    r8d,r8d</pre></code></td>
+</tr><tr class="">
+<td></td><td id="1" class="reference" data-reference="1_M00_L01" title="00007fff`739a962f 7e16            jle     00007fff`739a9647"><a href="#1_M00_L01"><pre><code>jle     M00_L01</pre></code></a></td>
+</tr><tr class="">
+<td></td><td ><pre><code>                sum += _data[i];
+                ^^^^^^^^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0006: ldloc.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0007: ldarg.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0008: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000d: ldloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000e: ldelem.u1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000f: add</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0010: stloc.0</pre></code></td>
+</tr><tr class="evenMap">
+<td id="1_M00_L00" class="label" data-label="1_M00_L00"><pre><code>M00_L00</pre></code></td>
+<td>&nbsp;</td></tr>
+<tr class="evenMap">
+<td></td><td title="00007fff`739a9631 4c8bc9          mov     r9,rcx"><pre><code>mov     r9,rcx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`739a9634 4c63d2          movsxd  r10,edx"><pre><code>movsxd  r10,edx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`739a9637 470fb64c1110    movzx   r9d,byte ptr [r9+r10+10h]"><pre><code>movzx   r9d,byte ptr [r9+r10+10h]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`739a963d 4103c1          add     eax,r9d"><pre><code>add     eax,r9d</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>            for (int i = 0; i < _data.Length; ++i)
+                                              ^^^</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0011: ldloc.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0012: ldc.i4.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0013: add</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0014: stloc.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`739a9640 ffc2            inc     edx"><pre><code>inc     edx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`739a9642 443bc2          cmp     r8d,edx"><pre><code>cmp     r8d,edx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td id="1" class="reference" data-reference="1_M00_L00" title="00007fff`739a9645 7fea            jg      00007fff`739a9631"><a href="#1_M00_L00"><pre><code>jg      M00_L00</pre></code></a></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>            return sum;
+            ^^^^^^^^^^^</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0020: ldloc.0</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0021: ret</pre></code></td>
+</tr><tr class="">
+<td id="1_M00_L01" class="label" data-label="1_M00_L01"><pre><code>M00_L01</pre></code></td>
+<td>&nbsp;</td></tr>
+<tr class="">
+<td></td><td title="00007fff`739a9647 c3              ret"><pre><code>ret</pre></code></td>
+</tr><tr><td colspan="{2}">&nbsp;</td></tr>
+</tbody></table>
+<h2>.NET Framework 4.7.2 (CLR 4.0.30319.42000), 64bit RyuJIT-v4.7.3416.0</h2>
+<table><tbody>
+<tr><th colspan="2" style="text-align: left;">Bdn1.ListsBenchmark4.Sum_Foreach()</th><th></th></tr>
+<tr class="">
+<td></td><td ><pre><code>            int sum = 0;
+            ^^^^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0000: ldc.i4.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0001: stloc.0</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`73989620 33c0            xor     eax,eax"><pre><code>xor     eax,eax</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            foreach (var n in _data)
+                              ^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0002: ldarg.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0003: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0008: stloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`73989622 488b5108        mov     rdx,qword ptr [rcx+8]"><pre><code>mov     rdx,qword ptr [rcx+8]</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0009: ldc.i4.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000a: stloc.2</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000b: br.s IL_0019</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`73989626 33c9            xor     ecx,ecx"><pre><code>xor     ecx,ecx</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            foreach (var n in _data)
+                           ^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0019: ldloc.2</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001a: ldloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001b: ldlen</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001c: conv.i4</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001d: blt.s IL_000d</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`73989628 448b4208        mov     r8d,dword ptr [rdx+8]"><pre><code>mov     r8d,dword ptr [rdx+8]</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`7398962c 4585c0          test    r8d,r8d"><pre><code>test    r8d,r8d</pre></code></td>
+</tr><tr class="">
+<td></td><td id="2" class="reference" data-reference="2_M00_L01" title="00007fff`7398962f 7e13            jle     00007fff`73989644"><a href="#2_M00_L01"><pre><code>jle     M00_L01</pre></code></a></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            foreach (var n in _data)
+                     ^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000d: ldloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000e: ldloc.2</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000f: ldelem.u1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0010: stloc.3</pre></code></td>
+</tr><tr class="evenMap">
+<td id="2_M00_L00" class="label" data-label="2_M00_L00"><pre><code>M00_L00</pre></code></td>
+<td>&nbsp;</td></tr>
+<tr class="evenMap">
+<td></td><td title="00007fff`73989631 4c63c9          movsxd  r9,ecx"><pre><code>movsxd  r9,ecx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`73989634 460fb64c0a10    movzx   r9d,byte ptr [rdx+r9+10h]"><pre><code>movzx   r9d,byte ptr [rdx+r9+10h]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>                sum += n;
+                ^^^^^^^^^</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0011: ldloc.0</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0012: ldloc.3</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0013: add</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0014: stloc.0</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`7398963a 4103c1          add     eax,r9d"><pre><code>add     eax,r9d</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0015: ldloc.2</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0016: ldc.i4.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0017: add</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0018: stloc.2</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`7398963d ffc1            inc     ecx"><pre><code>inc     ecx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`7398963f 443bc1          cmp     r8d,ecx"><pre><code>cmp     r8d,ecx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td id="2" class="reference" data-reference="2_M00_L00" title="00007fff`73989642 7fed            jg      00007fff`73989631"><a href="#2_M00_L00"><pre><code>jg      M00_L00</pre></code></a></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>            return sum;
+            ^^^^^^^^^^^</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_001f: ldloc.0</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0020: ret</pre></code></td>
+</tr><tr class="">
+<td id="2_M00_L01" class="label" data-label="2_M00_L01"><pre><code>M00_L01</pre></code></td>
+<td>&nbsp;</td></tr>
+<tr class="">
+<td></td><td title="00007fff`73989644 c3              ret"><pre><code>ret</pre></code></td>
+</tr><tr><td colspan="{2}">&nbsp;</td></tr>
+</tbody></table>
+<h2>.NET Core 2.2.3 (CoreCLR 4.6.27414.05, CoreFX 4.6.27414.05), 64bit RyuJIT</h2>
+<table><tbody>
+<tr><th colspan="2" style="text-align: left;">Bdn1.ListsBenchmark4.Sum_ByIndex()</th><th></th></tr>
+<tr class="">
+<td></td><td ><pre><code>            int sum = 0;
+            ^^^^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0000: ldc.i4.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0001: stloc.0</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb12c676 33c0            xor     eax,eax"><pre><code>xor     eax,eax</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb12c678 8945fc          mov     dword ptr [rbp-4],eax"><pre><code>mov     dword ptr [rbp-4],eax</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            for (int i = 0; i < _data.Length; ++i)
+                 ^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0002: ldc.i4.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0003: stloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0004: br.s IL_0015</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb12c67b 8945f8          mov     dword ptr [rbp-8],eax"><pre><code>mov     dword ptr [rbp-8],eax</pre></code></td>
+</tr><tr class="">
+<td></td><td id="3" class="reference" data-reference="3_M00_L01" title="00007ffe`fb12c67e eb27            jmp     00007ffe`fb12c6a7"><a href="#3_M00_L01"><pre><code>jmp     M00_L01</pre></code></a></td>
+</tr><tr class="">
+<td></td><td ><pre><code>                sum += _data[i];
+                ^^^^^^^^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0006: ldloc.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0007: ldarg.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0008: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000d: ldloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000e: ldelem.u1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000f: add</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0010: stloc.0</pre></code></td>
+</tr><tr class="evenMap">
+<td id="3_M00_L00" class="label" data-label="3_M00_L00"><pre><code>M00_L00</pre></code></td>
+<td>&nbsp;</td></tr>
+<tr class="evenMap">
+<td></td><td title="00007ffe`fb12c680 488b4510        mov     rax,qword ptr [rbp+10h]"><pre><code>mov     rax,qword ptr [rbp+10h]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb12c684 488b4008        mov     rax,qword ptr [rax+8]"><pre><code>mov     rax,qword ptr [rax+8]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb12c688 8b55f8          mov     edx,dword ptr [rbp-8]"><pre><code>mov     edx,dword ptr [rbp-8]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb12c68b 483b5008        cmp     rdx,qword ptr [rax+8]"><pre><code>cmp     rdx,qword ptr [rax+8]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb12c68f 732f            jae     00007ffe`fb12c6c0"><pre><code>jae     00007ffe`fb12c6c0</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb12c691 488d441010      lea     rax,[rax+rdx+10h]"><pre><code>lea     rax,[rax+rdx+10h]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb12c696 0fb600          movzx   eax,byte ptr [rax]"><pre><code>movzx   eax,byte ptr [rax]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb12c699 0345fc          add     eax,dword ptr [rbp-4]"><pre><code>add     eax,dword ptr [rbp-4]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb12c69c 8945fc          mov     dword ptr [rbp-4],eax"><pre><code>mov     dword ptr [rbp-4],eax</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>            for (int i = 0; i < _data.Length; ++i)
+                                              ^^^</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0011: ldloc.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0012: ldc.i4.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0013: add</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0014: stloc.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb12c69f 8b45f8          mov     eax,dword ptr [rbp-8]"><pre><code>mov     eax,dword ptr [rbp-8]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb12c6a2 ffc0            inc     eax"><pre><code>inc     eax</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb12c6a4 8945f8          mov     dword ptr [rbp-8],eax"><pre><code>mov     dword ptr [rbp-8],eax</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>            for (int i = 0; i < _data.Length; ++i)
+                            ^^^^^^^^^^^^^^^^</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0015: ldloc.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0016: ldarg.0</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0017: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_001c: ldlen</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_001d: conv.i4</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_001e: blt.s IL_0006</pre></code></td>
+</tr><tr class="">
+<td id="3_M00_L01" class="label" data-label="3_M00_L01"><pre><code>M00_L01</pre></code></td>
+<td>&nbsp;</td></tr>
+<tr class="">
+<td></td><td title="00007ffe`fb12c6a7 8b45f8          mov     eax,dword ptr [rbp-8]"><pre><code>mov     eax,dword ptr [rbp-8]</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb12c6aa 488b5510        mov     rdx,qword ptr [rbp+10h]"><pre><code>mov     rdx,qword ptr [rbp+10h]</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb12c6ae 488b5208        mov     rdx,qword ptr [rdx+8]"><pre><code>mov     rdx,qword ptr [rdx+8]</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb12c6b2 3b4208          cmp     eax,dword ptr [rdx+8]"><pre><code>cmp     eax,dword ptr [rdx+8]</pre></code></td>
+</tr><tr class="">
+<td></td><td id="3" class="reference" data-reference="3_M00_L00" title="00007ffe`fb12c6b5 7cc9            jl      00007ffe`fb12c680"><a href="#3_M00_L00"><pre><code>jl      M00_L00</pre></code></a></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            return sum;
+            ^^^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0020: ldloc.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0021: ret</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb12c6b7 8b45fc          mov     eax,dword ptr [rbp-4]"><pre><code>mov     eax,dword ptr [rbp-4]</pre></code></td>
+</tr><tr><td colspan="{2}">&nbsp;</td></tr>
+</tbody></table>
+<h2>.NET Core 2.2.3 (CoreCLR 4.6.27414.05, CoreFX 4.6.27414.05), 64bit RyuJIT</h2>
+<table><tbody>
+<tr><th colspan="2" style="text-align: left;">Bdn1.ListsBenchmark4.Sum_Foreach()</th><th></th></tr>
+<tr class="">
+<td></td><td ><pre><code>            int sum = 0;
+            ^^^^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0000: ldc.i4.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0001: stloc.0</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb13c683 33c0            xor     eax,eax"><pre><code>xor     eax,eax</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb13c685 8945ec          mov     dword ptr [rbp-14h],eax"><pre><code>mov     dword ptr [rbp-14h],eax</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            foreach (var n in _data)
+                              ^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0002: ldarg.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0003: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0008: stloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb13c688 488b4510        mov     rax,qword ptr [rbp+10h]"><pre><code>mov     rax,qword ptr [rbp+10h]</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb13c68c 488b4008        mov     rax,qword ptr [rax+8]"><pre><code>mov     rax,qword ptr [rax+8]</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb13c690 488945e0        mov     qword ptr [rbp-20h],rax"><pre><code>mov     qword ptr [rbp-20h],rax</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0009: ldc.i4.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000a: stloc.2</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000b: br.s IL_0019</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb13c694 33c0            xor     eax,eax"><pre><code>xor     eax,eax</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb13c696 8945dc          mov     dword ptr [rbp-24h],eax"><pre><code>mov     dword ptr [rbp-24h],eax</pre></code></td>
+</tr><tr class="">
+<td></td><td id="4" class="reference" data-reference="4_M00_L01" title="00007ffe`fb13c699 eb29            jmp     00007ffe`fb13c6c4"><a href="#4_M00_L01"><pre><code>jmp     M00_L01</pre></code></a></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            foreach (var n in _data)
+                     ^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000d: ldloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000e: ldloc.2</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000f: ldelem.u1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0010: stloc.3</pre></code></td>
+</tr><tr class="evenMap">
+<td id="4_M00_L00" class="label" data-label="4_M00_L00"><pre><code>M00_L00</pre></code></td>
+<td>&nbsp;</td></tr>
+<tr class="evenMap">
+<td></td><td title="00007ffe`fb13c69b 488b45e0        mov     rax,qword ptr [rbp-20h]"><pre><code>mov     rax,qword ptr [rbp-20h]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb13c69f 8b55dc          mov     edx,dword ptr [rbp-24h]"><pre><code>mov     edx,dword ptr [rbp-24h]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb13c6a2 483b5008        cmp     rdx,qword ptr [rax+8]"><pre><code>cmp     rdx,qword ptr [rax+8]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb13c6a6 7333            jae     00007ffe`fb13c6db"><pre><code>jae     00007ffe`fb13c6db</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb13c6a8 488d441010      lea     rax,[rax+rdx+10h]"><pre><code>lea     rax,[rax+rdx+10h]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb13c6ad 0fb600          movzx   eax,byte ptr [rax]"><pre><code>movzx   eax,byte ptr [rax]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb13c6b0 8945d8          mov     dword ptr [rbp-28h],eax"><pre><code>mov     dword ptr [rbp-28h],eax</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>                sum += n;
+                ^^^^^^^^^</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0011: ldloc.0</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0012: ldloc.3</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0013: add</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0014: stloc.0</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb13c6b3 8b45ec          mov     eax,dword ptr [rbp-14h]"><pre><code>mov     eax,dword ptr [rbp-14h]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb13c6b6 0345d8          add     eax,dword ptr [rbp-28h]"><pre><code>add     eax,dword ptr [rbp-28h]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb13c6b9 8945ec          mov     dword ptr [rbp-14h],eax"><pre><code>mov     dword ptr [rbp-14h],eax</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0015: ldloc.2</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0016: ldc.i4.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0017: add</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0018: stloc.2</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb13c6bc 8b45dc          mov     eax,dword ptr [rbp-24h]"><pre><code>mov     eax,dword ptr [rbp-24h]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb13c6bf ffc0            inc     eax"><pre><code>inc     eax</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007ffe`fb13c6c1 8945dc          mov     dword ptr [rbp-24h],eax"><pre><code>mov     dword ptr [rbp-24h],eax</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>            foreach (var n in _data)
+                           ^^</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0019: ldloc.2</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_001a: ldloc.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_001b: ldlen</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_001c: conv.i4</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_001d: blt.s IL_000d</pre></code></td>
+</tr><tr class="">
+<td id="4_M00_L01" class="label" data-label="4_M00_L01"><pre><code>M00_L01</pre></code></td>
+<td>&nbsp;</td></tr>
+<tr class="">
+<td></td><td title="00007ffe`fb13c6c4 8b45dc          mov     eax,dword ptr [rbp-24h]"><pre><code>mov     eax,dword ptr [rbp-24h]</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb13c6c7 488b55e0        mov     rdx,qword ptr [rbp-20h]"><pre><code>mov     rdx,qword ptr [rbp-20h]</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb13c6cb 3b4208          cmp     eax,dword ptr [rdx+8]"><pre><code>cmp     eax,dword ptr [rdx+8]</pre></code></td>
+</tr><tr class="">
+<td></td><td id="4" class="reference" data-reference="4_M00_L00" title="00007ffe`fb13c6ce 7ccb            jl      00007ffe`fb13c69b"><a href="#4_M00_L00"><pre><code>jl      M00_L00</pre></code></a></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            return sum;
+            ^^^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001f: ldloc.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0020: ret</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007ffe`fb13c6d0 8b45ec          mov     eax,dword ptr [rbp-14h]"><pre><code>mov     eax,dword ptr [rbp-14h]</pre></code></td>
+</tr><tr><td colspan="{2}">&nbsp;</td></tr>
+</tbody></table>
+<h2>.NET Core 3.0.0-preview7-27912-14 (CoreCLR 4.700.19.32702, CoreFX 4.700.19.36209), 64bit RyuJIT</h2>
+<table><tbody>
+<tr><th colspan="2" style="text-align: left;">Bdn1.ListsBenchmark4.Sum_ByIndex()</th><th></th></tr>
+<tr class="">
+<td></td><td ><pre><code>            int sum = 0;
+            ^^^^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0000: ldc.i4.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0001: stloc.0</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`04a18b84 33c0            xor     eax,eax"><pre><code>xor     eax,eax</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            for (int i = 0; i < _data.Length; ++i)
+                 ^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0002: ldc.i4.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0003: stloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0004: br.s IL_0015</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`04a18b86 33d2            xor     edx,edx"><pre><code>xor     edx,edx</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            for (int i = 0; i < _data.Length; ++i)
+                            ^^^^^^^^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0015: ldloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0016: ldarg.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0017: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001c: ldlen</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001d: conv.i4</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001e: blt.s IL_0006</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`04a18b88 488b4908        mov     rcx,qword ptr [rcx+8]"><pre><code>mov     rcx,qword ptr [rcx+8]</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`04a18b8c 83790800        cmp     dword ptr [rcx+8],0"><pre><code>cmp     dword ptr [rcx+8],0</pre></code></td>
+</tr><tr class="">
+<td></td><td id="5" class="reference" data-reference="5_M00_L01" title="00007fff`04a18b90 7e1c            jle     00007fff`04a18bae"><a href="#5_M00_L01"><pre><code>jle     M00_L01</pre></code></a></td>
+</tr><tr class="">
+<td></td><td ><pre><code>                sum += _data[i];
+                ^^^^^^^^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0006: ldloc.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0007: ldarg.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0008: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000d: ldloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000e: ldelem.u1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000f: add</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0010: stloc.0</pre></code></td>
+</tr><tr class="evenMap">
+<td id="5_M00_L00" class="label" data-label="5_M00_L00"><pre><code>M00_L00</pre></code></td>
+<td>&nbsp;</td></tr>
+<tr class="evenMap">
+<td></td><td title="00007fff`04a18b92 4c8bc1          mov     r8,rcx"><pre><code>mov     r8,rcx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`04a18b95 413b5008        cmp     edx,dword ptr [r8+8]"><pre><code>cmp     edx,dword ptr [r8+8]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`04a18b99 7318            jae     00007fff`04a18bb3"><pre><code>jae     00007fff`04a18bb3</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`04a18b9b 4c63ca          movsxd  r9,edx"><pre><code>movsxd  r9,edx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`04a18b9e 470fb6440810    movzx   r8d,byte ptr [r8+r9+10h]"><pre><code>movzx   r8d,byte ptr [r8+r9+10h]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`04a18ba4 4103c0          add     eax,r8d"><pre><code>add     eax,r8d</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>            for (int i = 0; i < _data.Length; ++i)
+                                              ^^^</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0011: ldloc.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0012: ldc.i4.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0013: add</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0014: stloc.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`04a18ba7 ffc2            inc     edx"><pre><code>inc     edx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`04a18ba9 395108          cmp     dword ptr [rcx+8],edx"><pre><code>cmp     dword ptr [rcx+8],edx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td id="5" class="reference" data-reference="5_M00_L00" title="00007fff`04a18bac 7fe4            jg      00007fff`04a18b92"><a href="#5_M00_L00"><pre><code>jg      M00_L00</pre></code></a></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>            return sum;
+            ^^^^^^^^^^^</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0020: ldloc.0</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0021: ret</pre></code></td>
+</tr><tr class="">
+<td id="5_M00_L01" class="label" data-label="5_M00_L01"><pre><code>M00_L01</pre></code></td>
+<td>&nbsp;</td></tr>
+<tr class="">
+<td></td><td title="00007fff`04a18bae 4883c428        add     rsp,28h"><pre><code>add     rsp,28h</pre></code></td>
+</tr><tr><td colspan="{2}">&nbsp;</td></tr>
+</tbody></table>
+<h2>.NET Core 3.0.0-preview7-27912-14 (CoreCLR 4.700.19.32702, CoreFX 4.700.19.36209), 64bit RyuJIT</h2>
+<table><tbody>
+<tr><th colspan="2" style="text-align: left;">Bdn1.ListsBenchmark4.Sum_Foreach()</th><th></th></tr>
+<tr class="">
+<td></td><td ><pre><code>            int sum = 0;
+            ^^^^^^^^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0000: ldc.i4.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0001: stloc.0</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`04a088a0 33c0            xor     eax,eax"><pre><code>xor     eax,eax</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            foreach (var n in _data)
+                              ^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0002: ldarg.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0003: ldfld System.Byte[] Bdn1.ListsBenchmark4::_data</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0008: stloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`04a088a2 488b5108        mov     rdx,qword ptr [rcx+8]"><pre><code>mov     rdx,qword ptr [rcx+8]</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0009: ldc.i4.0</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000a: stloc.2</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000b: br.s IL_0019</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`04a088a6 33c9            xor     ecx,ecx"><pre><code>xor     ecx,ecx</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            foreach (var n in _data)
+                           ^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0019: ldloc.2</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001a: ldloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001b: ldlen</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001c: conv.i4</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_001d: blt.s IL_000d</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`04a088a8 448b4208        mov     r8d,dword ptr [rdx+8]"><pre><code>mov     r8d,dword ptr [rdx+8]</pre></code></td>
+</tr><tr class="">
+<td></td><td title="00007fff`04a088ac 4585c0          test    r8d,r8d"><pre><code>test    r8d,r8d</pre></code></td>
+</tr><tr class="">
+<td></td><td id="6" class="reference" data-reference="6_M00_L01" title="00007fff`04a088af 7e13            jle     00007fff`04a088c4"><a href="#6_M00_L01"><pre><code>jle     M00_L01</pre></code></a></td>
+</tr><tr class="">
+<td></td><td ><pre><code>            foreach (var n in _data)
+                     ^^^^^</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000d: ldloc.1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000e: ldloc.2</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_000f: ldelem.u1</pre></code></td>
+</tr><tr class="">
+<td></td><td ><pre><code>IL_0010: stloc.3</pre></code></td>
+</tr><tr class="evenMap">
+<td id="6_M00_L00" class="label" data-label="6_M00_L00"><pre><code>M00_L00</pre></code></td>
+<td>&nbsp;</td></tr>
+<tr class="evenMap">
+<td></td><td title="00007fff`04a088b1 4c63c9          movsxd  r9,ecx"><pre><code>movsxd  r9,ecx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`04a088b4 460fb64c0a10    movzx   r9d,byte ptr [rdx+r9+10h]"><pre><code>movzx   r9d,byte ptr [rdx+r9+10h]</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>                sum += n;
+                ^^^^^^^^^</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0011: ldloc.0</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0012: ldloc.3</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0013: add</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0014: stloc.0</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`04a088ba 4103c1          add     eax,r9d"><pre><code>add     eax,r9d</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0015: ldloc.2</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0016: ldc.i4.1</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0017: add</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0018: stloc.2</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`04a088bd ffc1            inc     ecx"><pre><code>inc     ecx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td title="00007fff`04a088bf 443bc1          cmp     r8d,ecx"><pre><code>cmp     r8d,ecx</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td id="6" class="reference" data-reference="6_M00_L00" title="00007fff`04a088c2 7fed            jg      00007fff`04a088b1"><a href="#6_M00_L00"><pre><code>jg      M00_L00</pre></code></a></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>            return sum;
+            ^^^^^^^^^^^</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_001f: ldloc.0</pre></code></td>
+</tr><tr class="evenMap">
+<td></td><td ><pre><code>IL_0020: ret</pre></code></td>
+</tr><tr class="">
+<td id="6_M00_L01" class="label" data-label="6_M00_L01"><pre><code>M00_L01</pre></code></td>
+<td>&nbsp;</td></tr>
+<tr class="">
+<td></td><td title="00007fff`04a088c4 c3              ret"><pre><code>ret</pre></code></td>
+</tr><tr><td colspan="{2}">&nbsp;</td></tr>
+</tbody></table>
+</body></html>
